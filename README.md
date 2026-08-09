@@ -1,51 +1,70 @@
 # College Placement Portal
 
-A full-stack MERN (MongoDB, Express, React, Node.js) application for managing college placements. This portal connects students with recruiters and provides administrators with tools to manage the entire placement process.
+A full-stack **MERN** application that streamlines the college placement process — connecting **students**, **recruiters**, and **administrators** on one platform. Students build profiles and apply to jobs, recruiters post openings and manage offers, and admins get real-time analytics and full control.
+
+![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white)
+![Express](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)
+![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black)
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
+![Redis](https://img.shields.io/badge/Redis-DC382D?style=for-the-badge&logo=redis&logoColor=white)
+
+---
 
 ## Features
 
 ### For Students
-- **Profile Management**: Create and manage academic profile with CGPA, skills, projects
-- **Resume Upload**: Upload and manage PDF resumes
-- **Job Search**: Browse and search for job opportunities
-- **Applications**: Apply to jobs and track application status
-- **Offers**: View and respond to job offers
+| | |
+|---|---|
+| **Profile Management** | Create and manage academic profile — CGPA, skills, projects |
+| **Resume Upload** | Upload and manage PDF resumes |
+| **Job Search** | Browse and search for job opportunities |
+| **Applications** | Apply to jobs and track application status in real time |
+| **Offers** | View and respond to job offers |
 
 ### For Recruiters
-- **Company Registration**: Register company with approval workflow
-- **Job Posting**: Create and manage job postings with eligibility criteria
-- **Application Management**: Review applications, shortlist candidates
-- **Offer Management**: Send and manage job offers
+| | |
+|---|---|
+| **Company Registration** | Register your company with an approval workflow |
+| **Job Posting** | Create and manage job postings with eligibility criteria |
+| **Application Management** | Review applications and shortlist candidates |
+| **Offer Management** | Send and manage job offers |
 
 ### For Administrators
-- **Dashboard Analytics**: Real-time placement statistics
-- **User Management**: Manage students, recruiters, and admins
-- **Company Approval**: Approve/reject company registrations
-- **Announcements**: Create targeted announcements
-- **Reports**: Export placement data to CSV
+| | |
+|---|---|
+| **Dashboard Analytics** | Real-time placement statistics |
+| **User Management** | Manage students, recruiters, and admins |
+| **Company Approval** | Approve or reject company registrations |
+| **Announcements** | Create targeted announcements |
+| **Reports** | Export placement data to CSV |
 
 ## Tech Stack
 
 ### Backend
-- **Runtime**: Node.js 18+
-- **Framework**: Express.js
-- **Database**: MongoDB with Mongoose ODM
-- **Authentication**: JWT (Access + Refresh tokens)
-- **Validation**: Joi
-- **File Upload**: Multer
-- **Email**: Nodemailer
-- **Job Queue**: Bull + Redis
-- **Logging**: Winston + Morgan
+| Technology | Purpose |
+|---|---|
+| Node.js 18+ | Runtime |
+| Express.js | Web framework |
+| MongoDB + Mongoose | Database & ODM |
+| JWT (Access + Refresh tokens) | Authentication |
+| Joi | Input validation |
+| Multer | File uploads |
+| Nodemailer | Email delivery |
+| Bull + Redis | Job queueing |
+| Winston + Morgan | Logging |
 
 ### Frontend
-- **Framework**: React 18 with Vite
-- **Routing**: React Router v6
-- **State Management**: Zustand
-- **Data Fetching**: TanStack Query
-- **Styling**: Tailwind CSS
-- **Forms**: Formik + Yup
-- **Icons**: Heroicons
-- **Charts**: Chart.js
+| Technology | Purpose |
+|---|---|
+| React 18 + Vite | UI framework & build tool |
+| React Router v6 | Routing |
+| Zustand | State management |
+| TanStack Query | Server-state / data fetching |
+| Tailwind CSS | Styling |
+| Formik + Yup | Form handling & validation |
+| Heroicons | Icons |
+| Chart.js | Charts & analytics |
 
 ## Project Structure
 
@@ -85,6 +104,7 @@ Placement Portal/
 ## Quick Start
 
 ### Prerequisites
+
 - Node.js 18+
 - MongoDB 6+
 - Redis 7+
@@ -92,128 +112,136 @@ Placement Portal/
 
 ### Using Docker (Recommended)
 
-1. Clone the repository:
 ```bash
+# 1. Clone the repository
 git clone <repository-url>
 cd "Placement Portal"
-```
 
-2. Create environment file:
-```bash
+# 2. Create your environment file from the template
 cp backend/.env.example backend/.env
-# Edit .env with your configuration
-```
 
-3. Start with Docker Compose:
-```bash
-# Production mode
+# 3a. Production mode
 docker-compose up -d
 
-# Development mode (MongoDB + Redis only)
+# 3b. Development mode (MongoDB + Redis only)
 docker-compose -f docker-compose.dev.yml up -d
 ```
 
-4. Access the application:
-- Frontend: http://localhost:3000
-- Backend API: http://localhost:5000
-- MongoDB Express (dev): http://localhost:8081
+Once running, access the app:
+
+| Service | URL |
+|---|---|
+| Frontend | http://localhost:3000 |
+| Backend API | http://localhost:5000 |
+| MongoDB Express (dev) | http://localhost:8081 |
 
 ### Manual Setup
 
-#### Backend
+**Backend**
+
 ```bash
 cd backend
 npm install
-cp .env.example .env
-# Edit .env with your configuration
+cp .env.example .env   # then edit .env with your configuration
 npm run dev
 ```
 
-#### Frontend
+**Frontend**
+
 ```bash
 cd frontend
 npm install
 npm run dev
 ```
 
+> **First run:** run `npm run seed` (in `backend/`) to bootstrap the superadmin account. Configure the initial credentials via `SUPERADMIN_EMAIL` / `SUPERADMIN_PASSWORD` in your `.env`.
+
 ## Environment Variables
 
-### Backend (.env)
-```env
-# Server
-NODE_ENV=development
-PORT=5000
+Copy `backend/.env.example` → `backend/.env` and fill in your values. Below is a reference of what each variable controls.
 
-# Database
-MONGODB_URI=mongodb://localhost:27017/placement_portal
+| Variable | Description | Example |
+|---|---|---|
+| `NODE_ENV` | Runtime environment | `development` |
+| `PORT` | Backend port | `5000` |
+| `MONGODB_URI` | MongoDB connection string | `mongodb://localhost:27017/placement_portal` |
+| `MONGODB_URI_TEST` | Test database connection | `mongodb://localhost:27017/placement_portal_test` |
+| `SUPERADMIN_EMAIL` | Superadmin account email (bootstrap) | `admin@yourdomain.com` |
+| `SUPERADMIN_PASSWORD` | Superadmin account password (bootstrap) | `your-strong-password` |
+| `JWT_ACCESS_SECRET` | JWT access token secret | `your-super-secure-access-secret` |
+| `JWT_REFRESH_SECRET` | JWT refresh token secret | `your-super-secure-refresh-secret` |
+| `JWT_ACCESS_EXPIRY` | Access token lifetime | `15m` |
+| `JWT_REFRESH_EXPIRY` | Refresh token lifetime | `7d` |
+| `RESET_PASSWORD_EXPIRY` | Password reset token lifetime (ms) | `3600000` |
+| `CORS_ORIGIN` | Allowed frontend origin | `http://localhost:3000` |
+| `RATE_LIMIT_WINDOW_MS` | Rate-limit window | `900000` |
+| `RATE_LIMIT_MAX_REQUESTS` | Max requests per window | `100` |
+| `MAX_FILE_SIZE` | Max upload size (bytes) | `5242880` |
+| `UPLOAD_PATH` | Uploads directory | `./uploads` |
+| `SMTP_HOST` | SMTP server | `smtp.gmail.com` |
+| `SMTP_PORT` | SMTP port | `587` |
+| `SMTP_USER` | SMTP username | `your-email@gmail.com` |
+| `SMTP_PASSWORD` | SMTP password / app password | `your-app-password` |
+| `EMAIL_FROM` | Outgoing email address | `noreply@placementportal.com` |
+| `REDIS_HOST` | Redis host | `localhost` |
+| `REDIS_PORT` | Redis port | `6379` |
+| `DEFAULT_PAGE_SIZE` | Pagination default | `10` |
+| `MAX_PAGE_SIZE` | Pagination maximum | `100` |
+| `FRONTEND_URL` | Frontend URL (for email links) | `http://localhost:3000` |
 
-# Redis
-REDIS_URL=redis://localhost:6379
-
-# JWT
-JWT_ACCESS_SECRET=your-access-secret
-JWT_REFRESH_SECRET=your-refresh-secret
-JWT_ACCESS_EXPIRES_IN=15m
-JWT_REFRESH_EXPIRES_IN=7d
-
-# Email
-EMAIL_HOST=smtp.gmail.com
-EMAIL_PORT=587
-EMAIL_USER=your-email@gmail.com
-EMAIL_PASS=your-app-password
-EMAIL_FROM=noreply@placement.edu
-
-# Frontend URL (for CORS and emails)
-FRONTEND_URL=http://localhost:3000
-```
+> **Security:** never commit real secrets. Use strong, unique values for all JWT secrets, SMTP credentials, and the superadmin password — especially in production. The `.env` file is git-ignored; only the `.env.example` template belongs in version control.
 
 ## API Endpoints
 
 ### Authentication
-- `POST /api/auth/register` - Register new user
-- `POST /api/auth/login` - Login
-- `POST /api/auth/refresh-token` - Refresh access token
-- `POST /api/auth/logout` - Logout
-- `POST /api/auth/forgot-password` - Request password reset
-- `POST /api/auth/reset-password/:token` - Reset password
+| Method | Endpoint | Description |
+|---|---|---|
+| POST | `/api/auth/register` | Register new user |
+| POST | `/api/auth/login` | Login |
+| POST | `/api/auth/refresh-token` | Refresh access token |
+| POST | `/api/auth/logout` | Logout |
+| POST | `/api/auth/forgot-password` | Request password reset |
+| POST | `/api/auth/reset-password/:token` | Reset password |
 
 ### Students
-- `GET /api/students/profile` - Get profile
-- `POST /api/students/profile` - Create profile
-- `PATCH /api/students/profile` - Update profile
-- `POST /api/students/profile/resume` - Upload resume
-- `GET /api/students` - Get all students (admin/recruiter)
+| Method | Endpoint | Description |
+|---|---|---|
+| GET | `/api/students/profile` | Get profile |
+| POST | `/api/students/profile` | Create profile |
+| PATCH | `/api/students/profile` | Update profile |
+| POST | `/api/students/profile/resume` | Upload resume |
+| GET | `/api/students` | Get all students (admin/recruiter) |
 
 ### Jobs
-- `GET /api/jobs` - Get all active jobs
-- `GET /api/jobs/:id` - Get job details
-- `POST /api/jobs` - Create job (recruiter)
-- `PATCH /api/jobs/:id` - Update job
-- `GET /api/jobs/eligible` - Get eligible jobs (student)
+| Method | Endpoint | Description |
+|---|---|---|
+| GET | `/api/jobs` | Get all active jobs |
+| GET | `/api/jobs/:id` | Get job details |
+| POST | `/api/jobs` | Create job (recruiter) |
+| PATCH | `/api/jobs/:id` | Update job |
+| GET | `/api/jobs/eligible` | Get eligible jobs (student) |
 
 ### Applications
-- `POST /api/applications` - Apply to job
-- `GET /api/applications/my-applications` - Get my applications
-- `PATCH /api/applications/:id/status` - Update status
-- `PATCH /api/applications/:id/withdraw` - Withdraw application
+| Method | Endpoint | Description |
+|---|---|---|
+| POST | `/api/applications` | Apply to job |
+| GET | `/api/applications/my-applications` | Get my applications |
+| PATCH | `/api/applications/:id/status` | Update status |
+| PATCH | `/api/applications/:id/withdraw` | Withdraw application |
 
 ### Companies
-- `POST /api/companies` - Register company
-- `GET /api/companies` - Get approved companies
-- `PATCH /api/companies/:id/approve` - Approve company (admin)
+| Method | Endpoint | Description |
+|---|---|---|
+| POST | `/api/companies` | Register company |
+| GET | `/api/companies` | Get approved companies |
+| PATCH | `/api/companies/:id/approve` | Approve company (admin) |
 
 ### Admin
-- `GET /api/admin/dashboard` - Dashboard analytics
-- `GET /api/admin/stats/placements` - Placement statistics
-- `GET /api/admin/export/students` - Export students CSV
-
-## Default Credentials
-
-After initialization, a superadmin account is created:
-- **Email**: admin@placement.edu
-- **Password**: Admin@123
-
-⚠️ **Change this password immediately in production!**
+| Method | Endpoint | Description |
+|---|---|---|
+| GET | `/api/admin/dashboard` | Dashboard analytics |
+| GET | `/api/admin/stats/placements` | Placement statistics |
+| GET | `/api/admin/export/students` | Export students CSV |
 
 ## Architecture
 
@@ -225,11 +253,13 @@ Request → Routes → Controllers → Services → Repositories → Models
                   Validators
 ```
 
-- **Routes**: Define API endpoints
-- **Controllers**: Handle HTTP request/response
-- **Services**: Business logic
-- **Repositories**: Data access layer
-- **Models**: MongoDB schemas
+| Layer | Responsibility |
+|---|---|
+| **Routes** | Define API endpoints |
+| **Controllers** | Handle HTTP request/response |
+| **Services** | Business logic |
+| **Repositories** | Data access layer |
+| **Models** | MongoDB schemas |
 
 ## Security Features
 
